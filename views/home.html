@@ -1,0 +1,63 @@
+<div class="col-md-12">
+  <div class="row">
+      <form>
+        <div class="form-group">
+          
+          <a href class="btn btn-success" ui-sref="veiculoCadastro">Novo Carro</a>
+          
+          <div class="col-md-3 pull-right">  
+            <div class="input-group">
+                <input type="text" class="form-control" ng-model="search.text" ng-keyup="pesquisa()">
+                <span class="input-group-btn">
+                  <a class="btn btn-default">
+                    <i class="glyphicon glyphicon-search"></i>
+                  </a>
+                </span>
+            </div>
+          </div>
+          <div class="clearfix">
+        </div>
+      </form>
+  </div>
+  <div class="row">
+    <table class="table">
+        <thead>
+          <tr>
+            <th>
+              <input type="checkbox" ng-click="checkAll()">
+            </th>
+            <th ng-repeat="(key, value) in cabecalhos">
+              {{value.nome}} 
+            </th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr ng-repeat="(chave, veiculo) in veiculos.slice(((currentPage-1)*itemsPerPage), ((currentPage)*itemsPerPage))">
+             <td>
+               <input type="checkbox" ng-model="checkboxes[$index]">
+             </td>
+             <td ng-repeat="(key, value) in cabecalhos">
+                <span ng-if="value.type == undefined">
+                  {{veiculo[value.campo]}}
+                </span>
+                <span ng-if="value.type == 'money'">
+                    {{veiculo[value.campo] | currency}}
+                </span>
+                <span ng-if="value.type == 'image'">
+                    <a ng-if="veiculo[value.campo] != null" href="{{veiculo[value.campo]}}" target="_BLANK">
+                        Imagem
+                    </a>
+                    <a ng-if="veiculo[value.campo] == null" href>
+                        Sem Foto
+                    </a>
+                </span>
+              </td> 
+          </tr>
+        </tbody>
+        
+    </table>
+    <div class="container text-center">
+      <ul uib-pagination total-items="totalItems" ng-model="currentPage" ng-change="pageChanged()" items-per-page="itemsPerPage"></ul>
+    </div> 
+  </div> 
+</div>

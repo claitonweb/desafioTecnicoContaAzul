@@ -1,0 +1,11 @@
+{
+  "name": "desafiofront",
+  "authors": [
+    "Claiton Padilha <claitonweb@gmail.com>"
+  ],
+  "description": "App para controle de frotas",
+  "main": [
+    "index.html"
+  ],
+  "license": "MIT"
+}
